@@ -709,6 +709,11 @@ def get_metrics(session_id: str):
         raise HTTPException(404, "Sesión no encontrada")
     return json.loads(path.read_text(encoding="utf-8"))
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
+
 if __name__ == "__main__":
     import uvicorn
     import os
