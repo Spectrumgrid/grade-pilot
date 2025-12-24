@@ -19,6 +19,10 @@ from pathlib import Path
 import json
 import time
 
+ENV = os.getenv("ENV", "dev")
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+
+
 SESSIONS_DIR = Path("sessions")
 SESSIONS_DIR.mkdir(exist_ok=True)
 SESSION_MAX_AGE_SECONDS = 60 * 60 * 24 * 365  # 1 año
@@ -67,7 +71,7 @@ cleanup_old_sessions()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[FRONTEND_URL],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
