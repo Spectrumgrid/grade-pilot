@@ -708,3 +708,14 @@ def get_metrics(session_id: str):
     if not path.exists():
         raise HTTPException(404, "Sesión no encontrada")
     return json.loads(path.read_text(encoding="utf-8"))
+
+if __name__ == "__main__":
+    import uvicorn
+    import os
+
+    uvicorn.run(
+        "main:app",
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 8000))
+    )
+
