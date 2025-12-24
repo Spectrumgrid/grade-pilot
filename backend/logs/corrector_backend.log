@@ -1,0 +1,71 @@
+2025-12-23 11:22:56,392 - corrector - INFO - Iniciando corrección de archivo: plantilla_examen_4_opciones_erronea.xlsx con 4 opciones
+2025-12-23 11:22:56,417 - corrector - ERROR - Columnas insuficientes: 10 encontradas, se esperan al menos 11
+2025-12-23 11:24:28,361 - corrector - INFO - Iniciando corrección de archivo: plantilla_examen_4_opciones_erronea.xlsx con 4 opciones
+2025-12-23 11:24:28,370 - corrector - ERROR - Columnas insuficientes: 10 encontradas, se esperan al menos 11
+2025-12-23 11:24:54,651 - corrector - INFO - Iniciando corrección de archivo: examen_corregido (3).xlsx con 4 opciones
+2025-12-23 11:24:54,654 - corrector - ERROR - Error al leer el Excel: Excel file format cannot be determined, you must specify an engine manually.
+2025-12-23 11:35:38,761 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_3.xlsx con 3 opciones
+2025-12-23 11:35:38,787 - corrector - ERROR - Opción inválida en clave P1: {'E'}
+2025-12-23 11:40:32,474 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_3.xlsx con 3 opciones
+2025-12-23 11:43:50,478 - corrector - INFO - Iniciando corrección de archivo: plantilla_error_numero_preguntas_3.xlsx con 3 opciones
+2025-12-23 11:43:50,488 - corrector - ERROR - Columnas insuficientes: 10
+2025-12-23 11:43:58,659 - corrector - INFO - Iniciando corrección de archivo: plantilla_error_dni_3.xlsx con 3 opciones
+2025-12-23 11:44:09,440 - corrector - INFO - Iniciando corrección de archivo: plantilla_error_dni_3.xlsx con 3 opciones
+2025-12-23 11:45:09,440 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_4.xlsx con 3 opciones
+2025-12-23 11:45:09,456 - corrector - ERROR - Opción inválida en clave P7: {'D'}
+2025-12-23 11:45:18,448 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_4.xlsx con 4 opciones
+2025-12-23 11:46:18,847 - corrector - INFO - Iniciando corrección de archivo: plantilla_error_dni_3.xlsx con 3 opciones
+2025-12-23 11:46:18,857 - corrector - ERROR - Columna DNI totalmente vacía
+2025-12-23 11:46:29,786 - corrector - INFO - Iniciando corrección de archivo: plantilla_error_numero_preguntas_3.xlsx con 3 opciones
+2025-12-23 11:46:29,796 - corrector - ERROR - Columnas insuficientes: 10
+2025-12-23 11:46:47,276 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_4.xlsx con 3 opciones
+2025-12-23 11:46:47,286 - corrector - ERROR - Opción inválida en clave P7: {'D'}
+2025-12-23 11:46:52,515 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_4.xlsx con 5 opciones
+2025-12-23 11:48:51,248 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_4.xlsx con 5 opciones
+2025-12-23 11:48:51,278 - corrector - ERROR - Mismatch opciones: detectada max D pero configuradas 5
+2025-12-23 11:49:05,235 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_4.xlsx con 3 opciones
+2025-12-23 11:49:05,244 - corrector - ERROR - Mismatch opciones: detectada D pero configuradas 3
+2025-12-23 11:49:09,941 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_4.xlsx con 4 opciones
+2025-12-23 11:49:25,349 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_3.xlsx con 3 opciones
+2025-12-23 13:13:43,856 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_4.xlsx con 4 opciones
+2025-12-23 13:16:44,781 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_5.xlsx con 5 opciones
+2025-12-23 13:30:42,957 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_5.xlsx con 5 opciones
+2025-12-23 13:31:02,893 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_5.xlsx con 5 opciones
+2025-12-23 13:32:20,440 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_5.xlsx con 5 opciones
+2025-12-23 13:46:13,441 - corrector - WARNING - No se pudo limpiar la sesión 1567ca47-c2df-42de-aabd-279ad8c979b3: name 'SESSION_MAX_AGE_SECONDS' is not defined
+2025-12-23 13:46:13,445 - corrector - WARNING - No se pudo limpiar la sesión 41d3c498-55da-4497-be22-bca2f1c471f3: name 'SESSION_MAX_AGE_SECONDS' is not defined
+2025-12-23 13:53:33,616 - corrector - INFO - Validación previa del archivo: plantilla_error_numero_preguntas_3.xlsx con 5 opciones
+2025-12-23 13:53:37,431 - corrector - INFO - Validación previa del archivo: plantilla_error_numero_preguntas_3.xlsx con 3 opciones
+2025-12-23 13:53:45,893 - corrector - INFO - Validación previa del archivo: plantilla_correcta_5.xlsx con 3 opciones
+2025-12-23 13:53:51,341 - corrector - INFO - Validación previa del archivo: plantilla_correcta_5.xlsx con 5 opciones
+2025-12-23 13:53:54,440 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_5.xlsx con 5 opciones
+2025-12-23 13:55:17,892 - corrector - INFO - Validación previa del archivo: plantilla_correcta_5.xlsx con 5 opciones
+2025-12-23 13:55:19,482 - corrector - WARNING - No se pudo limpiar la sesión 79de6005-1066-4a97-a15a-5acdf7551dd1: name 'SESSION_MAX_AGE_SECONDS' is not defined
+2025-12-23 13:55:19,580 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_5.xlsx con 5 opciones
+2025-12-23 13:55:41,231 - corrector - WARNING - No se pudo limpiar la sesión 29f8c3c2-c1a0-468b-b04d-87077d085523: name 'SESSION_MAX_AGE_SECONDS' is not defined
+2025-12-23 13:55:41,231 - corrector - WARNING - No se pudo limpiar la sesión 79de6005-1066-4a97-a15a-5acdf7551dd1: name 'SESSION_MAX_AGE_SECONDS' is not defined
+2025-12-23 13:55:50,719 - corrector - INFO - Validación previa del archivo: plantilla_correcta_5.xlsx con 5 opciones
+2025-12-23 13:55:51,487 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_5.xlsx con 5 opciones
+2025-12-23 13:56:11,496 - corrector - WARNING - No se pudo limpiar la sesión 29f8c3c2-c1a0-468b-b04d-87077d085523: name 'SESSION_MAX_AGE_SECONDS' is not defined
+2025-12-23 13:56:11,497 - corrector - WARNING - No se pudo limpiar la sesión 79de6005-1066-4a97-a15a-5acdf7551dd1: name 'SESSION_MAX_AGE_SECONDS' is not defined
+2025-12-23 13:56:11,497 - corrector - WARNING - No se pudo limpiar la sesión abd54063-ea1c-46cc-bfba-7b39cc6c673f: name 'SESSION_MAX_AGE_SECONDS' is not defined
+2025-12-23 13:56:15,210 - corrector - INFO - Validación previa del archivo: plantilla_correcta_3.xlsx con 3 opciones
+2025-12-23 13:56:16,070 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_3.xlsx con 3 opciones
+2025-12-23 13:57:20,083 - corrector - WARNING - No se pudo limpiar la sesión 29f8c3c2-c1a0-468b-b04d-87077d085523: name 'SESSION_MAX_AGE_SECONDS' is not defined
+2025-12-23 13:57:20,084 - corrector - WARNING - No se pudo limpiar la sesión 79de6005-1066-4a97-a15a-5acdf7551dd1: name 'SESSION_MAX_AGE_SECONDS' is not defined
+2025-12-23 13:57:20,084 - corrector - WARNING - No se pudo limpiar la sesión 9522fcfc-5a69-44a5-8f70-d1f19c7c35f5: name 'SESSION_MAX_AGE_SECONDS' is not defined
+2025-12-23 13:57:20,084 - corrector - WARNING - No se pudo limpiar la sesión abd54063-ea1c-46cc-bfba-7b39cc6c673f: name 'SESSION_MAX_AGE_SECONDS' is not defined
+2025-12-23 13:57:25,380 - corrector - INFO - Validación previa del archivo: plantilla_correcta_5.xlsx con 5 opciones
+2025-12-23 13:57:26,209 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_5.xlsx con 5 opciones
+2025-12-23 14:04:30,145 - corrector - INFO - Validación previa del archivo: plantilla_correcta_5.xlsx con 5 opciones
+2025-12-23 14:04:31,758 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_5.xlsx con 5 opciones
+2025-12-23 15:30:25,022 - corrector - INFO - Validación previa del archivo: plantilla_correcta_5.xlsx con 5 opciones
+2025-12-23 15:30:26,891 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_5.xlsx con 5 opciones
+2025-12-24 12:27:37,578 - corrector - INFO - Validación previa del archivo: plantilla_correcta_5.xlsx con 5 opciones y 9 preguntas
+2025-12-24 12:29:18,900 - corrector - INFO - Validación previa del archivo: plantilla_correcta_5.xlsx con 5 opciones y 9 preguntas
+2025-12-24 12:29:26,367 - corrector - INFO - Validación previa del archivo: plantilla_correcta_5.xlsx con 5 opciones y 9 preguntas
+2025-12-24 12:30:29,917 - corrector - INFO - Validación previa del archivo: plantilla_correcta_5.xlsx con 5 opciones y 9 preguntas
+2025-12-24 12:30:34,988 - corrector - INFO - Validación previa del archivo: plantilla_correcta_5.xlsx con 5 opciones y 11 preguntas
+2025-12-24 12:31:47,214 - corrector - INFO - Validación previa del archivo: plantilla_correcta_5.xlsx con 5 opciones y 9 preguntas
+2025-12-24 12:31:53,868 - corrector - INFO - Validación previa del archivo: plantilla_correcta_5.xlsx con 4 opciones y 9 preguntas
+2025-12-24 12:31:55,815 - corrector - INFO - Validación previa del archivo: plantilla_correcta_5.xlsx con 4 opciones y 10 preguntas
