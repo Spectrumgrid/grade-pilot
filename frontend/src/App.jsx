@@ -12,6 +12,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import toast, { Toaster } from "react-hot-toast";
+import { validateExam, correctExam, getPreview, getMetrics, downloadExcel, downloadPdf } from "./services/api";
 
 function App() {
   const [file, setFile] = useState(null);
@@ -523,7 +524,7 @@ function App() {
                 </div>
               )}
 
-              <h1>Corrector automático</h1>
+              <h1>Grade Pilot</h1>
               <p className="subtitle">
                 Sube el Excel del examen tipo test y descarga la corrección al instante
               </p>
