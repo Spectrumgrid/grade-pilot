@@ -14,6 +14,8 @@ import {
 import toast, { Toaster } from "react-hot-toast";
 import { validateExam, correctExam, getPreview, getMetrics, downloadExcel, downloadPdf } from "./services/api";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function App() {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -87,7 +89,7 @@ function App() {
     formData.append("n_preguntas", nPreguntas);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/validate", {
+      const res = await fetch(`${API_URL}/validate`, {
         method: "POST",
         body: formData,
       });
@@ -122,7 +124,7 @@ function App() {
     setSuccess(false);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/corregir", {
+      const response = await fetch(`${API_URL}/corregir`, {
         method: "POST",
         body: formData,
       });
@@ -139,9 +141,9 @@ function App() {
       toast.success("¡Examen corregido y descargado!");
 
       // Obtener datos para el historial
-      const previewRes = await fetch(`http://127.0.0.1:8000/preview/${newSessionId}`);
+      const previewRes = await fetch(`${API_URL}/preview/${newSessionId}`);
       const previewJson = await previewRes.json();
-      const metricsRes = await fetch(`http://127.0.0.1:8000/metrics/${newSessionId}`);
+      const metricsRes = await fetch(`${API_URL}/metrics/${newSessionId}`);
       const metricsJson = await metricsRes.json();
 
       // ACTUALIZAR ESTADO LOCAL PARA QUE SE VEA AL MOMENTO
@@ -172,7 +174,7 @@ function App() {
 
   const descargarExcel = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/download/${session_id}`);
+      const response = await fetch(`${API_URL}/download/${session_id}`);
       if (!response.ok) throw new Error("Error al descargar Excel");
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
@@ -188,7 +190,7 @@ function App() {
 
   const descargarPDF = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/export-pdf/${session_id}`);
+      const response = await fetch(`${API_URL}/export-pdf/${session_id}`);
       if (!response.ok) throw new Error("Error al exportar PDF");
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
@@ -481,7 +483,7 @@ function App() {
               <button
                 className="secondary-btn"
                 onClick={async () => {
-                  const res = await fetch(`http://127.0.0.1:8000/preview/${session_id}`);
+                  const res = await fetch(`${API_URL}/preview/${session_id}`);
                   const data = await res.json();
                   setPreviewData(data);
                   setShowPreview(true);
@@ -492,7 +494,7 @@ function App() {
               <button
                 className="secondary-btn"
                 onClick={async () => {
-                  const res = await fetch(`http://127.0.0.1:8000/metrics/${session_id}`);
+                  const res = await fetch(`${API_URL}/metrics/${session_id}`);
                   const data = await res.json();
                   setMetrics(data);
                   setShowMetrics(true);
