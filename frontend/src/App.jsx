@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import "./App.css";
-import { IconCircleCheckFilled } from "@tabler/icons-react";
+import { IconCircleCheckFilled, IconArrowBackUp } from "@tabler/icons-react";
 import {
   BarChart,
   Bar,
@@ -33,6 +33,7 @@ function App() {
   const [history, setHistory] = useState([]);
   const [session_id, setSessionId] = useState(null);
   const [validated, setValidated] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(true);
 
   useEffect(() => {
     const savedHistory = localStorage.getItem("corrector_history");
@@ -261,9 +262,9 @@ function App() {
                       <li>Asegúrate de que la fila 2 contiene las respuestas correctas</li>
                       <li>Haz clic en "Seleccionar archivo" o arrastra el Excel a la zona de carga</li>
                       <li>Presiona el botón "Corregir examen"</li>
-                      <li>El archivo corregido se descargará automáticamente</li>
-                      <li>Opcionalmente, puedes ver las métricas y el preview de notas</li>
-                      <li>Si necesitas descargar el Excel de nuevo, usa el botón "Descargar Excel"</li>
+                      <li>Puedes ver las métricas y el preview de notas</li>
+                      <li>Puedes descargar el Excel corregido, usa el botón "Descargar Excel"</li>
+                      <li>También puedes exportar el examen corregido a PDF, usa el botón "Exportar a PDF"</li>
                     </ol>
                   </div>
 
@@ -461,8 +462,41 @@ function App() {
           )}
 
 
+          {/* ===== WELCOME CARD ===== */}
+          {showWelcome && (
+            <div className="welcome-card-content">
+              <h1>¡Bienvenido a Grade Pilot!</h1>
+              <p className="welcome-description">
+                La solución inteligente para la corrección de exámenes tipo test.
+                Sube tu archivo, valida la estructura y obtén resultados detallados
+                con métricas avanzadas en cuestión de segundos.
+              </p>
+
+              <div className="welcome-features">
+                <div className="feature-pill">📁 Carga de Excel</div>
+                <div className="feature-pill">📊 Métricas Detalladas</div>
+                <div className="feature-pill">📄 Exportación PDF</div>
+              </div>
+
+              <div className="welcome-actions">
+                <button
+                  className="primary-btn start-btn"
+                  onClick={() => setShowWelcome(false)}
+                >
+                  Comenzar
+                </button>
+                <button
+                  className="secondary-btn"
+                  onClick={() => setShowTutorial(true)}
+                >
+                  Ver Tutorial
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* ===== SUCCESS STATE ===== */}
-          {success && !loading && (
+          {!showWelcome && success && !loading && (
             <div className="success-state">
               <IconCircleCheckFilled size={56} className="success-icon" />
               <h2>Examen corregido</h2>
@@ -517,7 +551,7 @@ function App() {
           )}
 
           {/* ===== MAIN FORM ===== */}
-          {!success && (
+          {!showWelcome && !success && (
             <>
               {loading && (
                 <div className="glass-loader">
@@ -526,7 +560,16 @@ function App() {
                 </div>
               )}
 
-              <h1>Grade Pilot</h1>
+              <div className="main-header">
+                <h1>Grade Pilot</h1>
+                <button
+                  className="back-btn"
+                  onClick={() => setShowWelcome(true)}
+                  title="Volver al inicio"
+                >
+                  <IconArrowBackUp size={20} />
+                </button>
+              </div>
               <p className="subtitle">
                 Sube el Excel del examen tipo test y descarga la corrección al instante
               </p>
@@ -630,13 +673,6 @@ function App() {
                 disabled={!file || loading || !validated}
               >
                 {loading ? "Corrigiendo…" : "Corregir examen"}
-              </button>
-
-              <button
-                className="primary-btn"
-                onClick={() => setShowTutorial(true)}
-              >
-                Tutorial
               </button>
 
               {/* Historial Reciente */}

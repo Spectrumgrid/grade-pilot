@@ -79,8 +79,35 @@ body,
 }
 
 /* Títulos */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
 .glass-card h1 {
     font-size: clamp(1.4rem, 3vw, 1.7rem);
+    margin: 0;
+}
+
+.back-btn {
+    background: rgba(255, 255, 255, 0);
+    border: 1px solid rgba(255, 255, 255, 0);
+    color: white;
+    width: 36px;
+    height: 32px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
 }
 
 .subtitle {
@@ -618,7 +645,8 @@ body,
 }
 
 .tutorial-header {
-    padding: 24px 28px;
+    padding: 48px 28px;
+    padding-bottom: 16px;
     font-size: 1.4rem;
     font-weight: 600;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -697,7 +725,9 @@ body,
 }
 
 .tutorial-footer {
-    padding: 20px 28px;
+    padding: 26px 28px;
+    padding-top: 16px;
+    padding-bottom: 36px;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -860,4 +890,71 @@ body,
 * {
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+}
+
+/* =========================
+   WELCOME CARD STYLES
+   ========================= */
+
+.welcome-card-content {
+    text-align: center;
+    padding: 20px 10px;
+    animation: fadeUp 0.6s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.welcome-description {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+.welcome-features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.feature-pill {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    backdrop-filter: blur(4px);
+}
+
+.welcome-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.start-btn {
+    font-size: 1.1rem;
+    padding: 16px;
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
