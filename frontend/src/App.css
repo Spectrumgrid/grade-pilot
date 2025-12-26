@@ -13,26 +13,24 @@ body,
 
 /* Fondo */
 .page {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
     background: linear-gradient(135deg, #1e3c72, #2a5298);
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 24px;
 }
 
 
 /* Card glass */
 .glass-card {
+    max-width: 430px;
     width: 100%;
-    max-width: 420px;
-    height: 80vh;
-    max-height: 80vh;
-    margin: 16px;
-    padding-right: 0;
-    padding-left: 20px;
-    padding-bottom: 20px;
-    padding-top: 20px;
+    height: min(100vh, 550px);
+    max-height: 150vh;
+    margin: 0;
+    padding: 28px 20px;
 
     border-radius: 18px;
     background: rgba(255, 255, 255, 0.15);
@@ -52,9 +50,11 @@ body,
 }
 
 .glass-card-body {
-    flex: 1;
+    flex: 1 1 auto;
     overflow-y: auto;
-    padding-right: 14px;
+    padding-right: 8px;
+    display: flex;
+    flex-direction: column;
 }
 
 .glass-loader {
@@ -287,36 +287,28 @@ body,
     inset: 0;
     z-index: 100;
     overflow: hidden;
-
-
-    background: rgb(74, 102, 152);
-    backdrop-filter: blur(6px);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: rgba(69, 98, 151, 1);
+    backdrop-filter: blur(8px);
+    padding: 0px;
 }
 
 .preview-content {
-    width: min(92vw, 520px);
-    max-height: 85vh;
-
-    background: rgb(74, 102, 152);
-    backdrop-filter: blur(16px);
-
-    border-radius: 20px;
+    width: min(100vw, 640px);
+    height: min(100vh, 550px);
+    background: rgba(69, 98, 151, 1);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 22px;
     padding: 0;
-
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-
     color: white;
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
 }
 
 .preview-header {
-    padding: 20px 24px;
+    padding: 23px 25px;
     font-size: 1.4rem;
     font-weight: 700;
 
@@ -324,13 +316,14 @@ body,
 }
 
 .preview-table-wrapper {
-    flex: 1;
+    flex: 1 1 auto;
     overflow-y: auto;
 }
 
 .preview-content table {
     width: 100%;
     border-collapse: collapse;
+    min-height: 0;
 }
 
 .preview-content thead {
@@ -379,10 +372,9 @@ body,
     inset: 0;
     z-index: 9999;
     width: 100%;
-
-    background: rgba(74, 102, 152, 1);
-    backdrop-filter: blur(6px);
-
+    background: rgba(69, 98, 151, 0.7);
+    backdrop-filter: blur(8px);
+    padding: 0px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -468,36 +460,34 @@ body,
 
 
 .metrics-content {
-    max-height: 85vh;
-
-    background: rgba(74, 102, 152, 1);
-    backdrop-filter: blur(18px);
-
+    width: min(100vw, 640px);
+    height: min(100vh, 550px);
+    background: rgba(69, 98, 151, 1);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 22px;
     padding: 0;
-
     display: flex;
     flex-direction: column;
-
     color: white;
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 .metrics-header {
-    padding: 22px 26px;
-    font-size: 1.3rem;
-    font-weight: 600;
-    overflow: hidden;
+    padding: 21px 25px;
+    font-size: 1.4rem;
+    font-weight: 700;
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgb(74, 102, 152);
 }
 
 .metrics-body {
-    flex: 1;
+    flex: 1 1 auto;
     overflow-y: auto;
     /* SOLO AQUÍ */
     padding-bottom: 16px;
+    min-height: 0;
 }
 
 /* ===== HERO ===== */
@@ -621,20 +611,20 @@ body,
     inset: 0;
     z-index: 9999;
     width: 100%;
-
-    background: rgba(74, 102, 152, 1);
-    backdrop-filter: blur(6px);
-
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(10px);
+    padding: 0px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .tutorial-content {
-    width: min(95vw, 800px);
-    max-height: 90vh;
-    background: rgba(74, 102, 152, 1);
-    backdrop-filter: blur(18px);
+    width: min(100vw, 900px);
+    height: min(100vh, 630px);
+    background: rgba(30, 41, 59, 0.98);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 22px;
     padding: 0;
     display: flex;
@@ -645,13 +635,12 @@ body,
 }
 
 .tutorial-header {
-    padding: 48px 28px;
-    padding-bottom: 16px;
+    padding: 24px 28px;
     font-size: 1.4rem;
     font-weight: 600;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    background: linear-gradient(135deg, rgba(0, 198, 255, 0.2), rgba(0, 114, 255, 0.2));
-
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    background: linear-gradient(135deg, rgba(0, 198, 255, 0.15), rgba(0, 114, 255, 0.15));
+    flex-shrink: 0;
     display: flex;
     justify-content: center;
 }
@@ -659,7 +648,8 @@ body,
 .tutorial-body {
     padding: 28px;
     overflow-y: auto;
-    flex: 1;
+    flex: 1 1 auto;
+    min-height: 0;
 }
 
 .tutorial-body h3 {
@@ -725,10 +715,10 @@ body,
 }
 
 .tutorial-footer {
-    padding: 26px 28px;
-    padding-top: 16px;
-    padding-bottom: 36px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.02);
+    flex-shrink: 0;
 }
 
 /* ===== HISTORY SECTION ===== */
@@ -898,7 +888,7 @@ body,
 
 .welcome-card-content {
     text-align: center;
-    padding: 20px 10px;
+    padding: 32px 16px;
     animation: fadeUp 0.6s ease-out;
     display: flex;
     flex-direction: column;
@@ -940,6 +930,18 @@ body,
     margin-top: 10px;
 }
 
+@media (min-width: 768px) {
+    .welcome-features {
+        gap: 14px;
+    }
+
+    .feature-pill {
+        font-size: 0.9rem;
+        padding: 8px 18px;
+    }
+}
+
+
 .start-btn {
     font-size: 1.1rem;
     padding: 16px;
@@ -956,5 +958,52 @@ body,
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* =========================
+   RESPONSIVE BREAKPOINTS
+========================= */
+
+@media (min-width: 768px) {
+    .glass-card {
+        max-width: 520px;
+        padding: 36px 32px;
+        border-radius: 22px;
+    }
+
+    .welcome-description {
+        max-width: 440px;
+        font-size: 1.1rem;
+    }
+
+    .welcome-actions {
+        max-width: 360px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 1200px) {
+    .glass-card {
+        max-width: 640px;
+        padding: 44px 40px;
+    }
+
+    .glass-card h1 {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 1.05rem;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .preview-content,
+    .metrics-content,
+    .tutorial-content {
+        border-radius: 26px;
     }
 }
