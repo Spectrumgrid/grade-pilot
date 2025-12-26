@@ -588,26 +588,23 @@ async def export_pdf(session_id: str):
 
     # ===== TÍTULO =====
     elements.append(
-        Paragraph("Reporte de Calificaciones - Corrector Automático", styles["Title"])
+        Paragraph("Calificaciones", styles["Title"])
     )
     elements.append(Spacer(1, 12))
     
-    # ===== TABLA DE ALUMNOS =====
-    elements.append(Paragraph("Detalle de Alumnos", styles['Heading2']))
-    elements.append(Spacer(1, 10))
-    
+    # ===== TABLA DE ALUMNOS =====    
     data = [["DNI", "Nota"]]
     for row in preview:
         data.append([row["dni"], f"{row['nota']:.2f}"])
     
-    t = Table(data, hAlign='LEFT')
+    t = Table(data, hAlign='CENTER')
     t.setStyle(TableStyle([
         ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
-        ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
         ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
         ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
         ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-        ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.white),
         ('GRID', (0, 0), (-1, -1), 1, colors.black)
     ]))
     elements.append(t)
@@ -615,10 +612,12 @@ async def export_pdf(session_id: str):
     # SALTO DE PÁGINA
     elements.append(PageBreak())
     
+    elements.append(
+        Paragraph("Métricas", styles["Title"])
+    )
+    elements.append(Spacer(1, 12))
+
     # ===== TABLA DE MÉTRICAS =====
-    elements.append(Paragraph("Resumen de Métricas", styles['Heading2']))
-    elements.append(Spacer(1, 10))
-    
     metrics_data = [
         ["Métrica", "Valor"],
         ["Alumnos Totales", str(metrics["alumnos_totales"])],
@@ -632,13 +631,14 @@ async def export_pdf(session_id: str):
         ["% Aprobados", f"{metrics['porcentaje_aprobados']}%"]
     ]
     
-    tm = Table(metrics_data, hAlign='LEFT')
+    tm = Table(metrics_data, hAlign='CENTER')
     tm.setStyle(TableStyle([
-        ('BACKGROUND', (0, 0), (-1, 0), colors.darkblue),
-        ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
-        ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+        ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
         ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
         ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.white),
         ('GRID', (0, 0), (-1, -1), 1, colors.black)
     ]))
     elements.append(tm)
@@ -651,7 +651,7 @@ async def export_pdf(session_id: str):
         questions = [q["question"] for q in question_data]
         avg_scores = [q["avg_score"] for q in question_data]
         
-        plt.bar(questions, avg_scores, color='#00c6ff')
+        plt.bar(questions, avg_scores, color='#45B7D1')
         plt.title("Puntuación media por pregunta")
         plt.ylim(0, 1.1)
         plt.grid(axis='y', linestyle='--', alpha=0.7)
