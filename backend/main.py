@@ -126,11 +126,90 @@ def parse_respuesta(valor):
 
 
 
+def validate_excel_logic(df: pd.DataFrame, n_preguntas: int, n_opciones: int):
+    """
+    Función centralizada para validar un DataFrame de examen.
+    Lanza HTTPException(400) si encuentra cualquier error.
+    """
+    if df.empty:
+        logger.error("El archivo Excel está vacío")
+        raise HTTPException(status_code=400, detail="El archivo Excel está vacío. Sube un archivo con datos.")
+
+    if len(df.columns) != n_preguntas + 1:
+        logger.error(f"Número de columnas incorrecto: {len(df.columns)}")
+        raise HTTPException(status_code=400, detail=f"El Excel debe tener exactamente {n_preguntas + 1} columnas (1 para DNI y {n_preguntas} para preguntas). Se detectaron {len(df.columns)}.")
+
+    # VALIDACIÓN: Fila de respuestas correctas
+    if df.iloc[0].isna().all():
+        logger.error("Fila 2 vacía")
+        raise HTTPException(status_code=400, detail="La fila 2 (clave de respuestas) está totalmente vacía. No puedo corregir sin soluciones.")
+
+    LETRAS_POSIBLES = ["A", "B", "C", "D", "E"]
+    OPCIONES_ACTUALES = set(LETRAS_POSIBLES[:n_opciones])
+
+    # --- ESCANEO INTELIGENTE DE OPCIONES EN EL EXCEL ---
+    all_text_in_questions = []
+    for col in range(1, n_preguntas + 1):
+        all_text_in_questions.extend(df.iloc[:, col].astype(str).tolist())
+    
+    letras_detectadas = set()
+    for text in all_text_in_questions:
+        if pd.isna(text) or text.lower() == 'nan': continue
+        for char in text.upper():
+            if char in LETRAS_POSIBLES:
+                letras_detectadas.add(char)
+    
+    if letras_detectadas:
+        max_letra_detectada = max(letras_detectadas)
+        idx_max_detectada = LETRAS_POSIBLES.index(max_letra_detectada) + 1
+        
+        if idx_max_detectada > n_opciones:
+            logger.error(f"Mismatch opciones: detectada {max_letra_detectada} pero configuradas {n_opciones}")
+            raise HTTPException(
+                status_code=400, 
+                detail=f"Has configurado el examen con {n_opciones} opciones, pero he detectado respuestas con la letra '{max_letra_detectada}'. Por favor, selecciona {idx_max_detectada} opciones en el menú desplegable."
+            )
+        
+        if idx_max_detectada < n_opciones:
+            logger.error(f"Mismatch opciones: detectada max {max_letra_detectada} pero configuradas {n_opciones}")
+            raise HTTPException(
+                status_code=400,
+                detail=f"Parece que el examen es de {idx_max_detectada} opciones (la letra más alta es '{max_letra_detectada}'), pero has seleccionado {n_opciones}. Esto causaría errores en el cálculo de la penalización. Por favor, corrígelo."
+            )
+
+    # Validar clave
+    for i in range(n_preguntas):
+        col_idx = i + 1
+        original_val = df.iloc[0, col_idx]
+        clave_set = parse_respuesta(original_val)
+        
+        if not clave_set:
+            logger.error(f"Pregunta P{i+1} sin clave")
+            raise HTTPException(status_code=400, detail=f"La pregunta P{i+1} en la CLAVE (fila 2) no tiene ninguna respuesta seleccionada.")
+
+        if not clave_set.issubset(OPCIONES_ACTUALES):
+            opciones_invalidas = clave_set - OPCIONES_ACTUALES
+            logger.error(f"Opción inválida en clave P{i+1}: {opciones_invalidas}")
+            raise HTTPException(
+                status_code=400, 
+                detail=f"En la P{i+1} de la CLAVE (fila 2) has puesto '{','.join(opciones_invalidas)}', pero has configurado el examen para tener solo {n_opciones} opciones."
+            )
+
+    df_alumnos = df.iloc[1:].copy()
+    if df_alumnos.empty:
+        logger.error("No hay alumnos")
+        raise HTTPException(status_code=400, detail="No hay datos de alumnos. Asegúrate de listarlos a partir de la fila 3.")
+
+    if df_alumnos.iloc[:, 0].isna().all():
+        logger.error("Columna DNI totalmente vacía")
+        raise HTTPException(status_code=400, detail="La columna de DNI está vacía. No puedo identificar a los alumnos.")
+
+
 @app.post("/corregir")
 async def corregir_examen(
     file: UploadFile = File(...),
-    n_opciones: int = Form(5),  # 3, 4 o 5
-    n_preguntas: int = Form(10) # Entre 5 y 20
+    n_opciones: int = Form(5),
+    n_preguntas: int = Form(10)
 ):
     session_id = str(uuid.uuid4())
     session_path = SESSIONS_DIR / session_id
@@ -140,119 +219,36 @@ async def corregir_examen(
     
     try:
         if not (5 <= n_preguntas <= 20):
-            logger.error(f"Número de preguntas inválido: {n_preguntas}")
             raise HTTPException(status_code=400, detail="El número de preguntas debe estar entre 5 y 20")
 
         if not file.filename.endswith(('.xlsx', '.xls')):
-            logger.error(f"Formato de archivo no válido: {file.filename}")
             raise HTTPException(status_code=400, detail="El archivo debe ser un Excel (.xlsx o .xls)")
 
-        # Intentar leer el Excel
         try:
             df_original = pd.read_excel(file.file)
         except Exception as e:
             logger.error(f"Error al leer el Excel: {str(e)}")
             raise HTTPException(status_code=400, detail="No se pudo leer el archivo Excel. Asegúrate de que no esté corrupto.")
 
-        # VALIDACIÓN: Estructura mínima (DNI + 10 preguntas)
-        if df_original.empty:
-            logger.error("El archivo Excel está vacío")
-            raise HTTPException(status_code=400, detail="El archivo Excel está vacío. Sube un archivo con datos.")
+        # VALIDACIÓN COMPLETA
+        validate_excel_logic(df_original, n_preguntas, n_opciones)
 
-        if len(df_original.columns) != n_preguntas + 1:
-            logger.error(f"Número de columnas incorrecto: {len(df_original.columns)}")
-            raise HTTPException(status_code=400, detail=f"El Excel debe tener exactamente {n_preguntas + 1} columnas (1 para DNI y {n_preguntas} para preguntas). Se detectaron {len(df_original.columns)}.")
-
-        # VALIDACIÓN: Nombres de columnas (opcional pero útil)
-        columnas = [str(c).strip().upper() for c in df_original.columns]
-        if "DNI" not in columnas[0]:
-            logger.warning(f"La primera columna no se llama DNI: {columnas[0]}")
-            # Lo dejamos como aviso, pero si quieres ser estricto:
-            # raise HTTPException(status_code=400, detail=f"La columna A debe ser 'DNI' (se encontró '{columnas[0]}')")
-
-        # VALIDACIÓN: Fila de respuestas correctas
-        if df_original.iloc[0].isna().all():
-            logger.error("Fila 2 vacía")
-            raise HTTPException(status_code=400, detail="La fila 2 (clave de respuestas) está totalmente vacía. No puedo corregir sin soluciones.")
-
-        # Definir el set de opciones configuradas por el usuario
         LETRAS_POSIBLES = ["A", "B", "C", "D", "E"]
         OPCIONES_ACTUALES = set(LETRAS_POSIBLES[:n_opciones])
-
-        # --- ESCANEO INTELIGENTE DE OPCIONES EN EL EXCEL ---
-        all_text_in_questions = []
-        # Recoger texto de la fila de respuestas (fila 1 de df) y de los alumnos (filas 1+)
-        for col in range(1, n_preguntas + 1):
-            all_text_in_questions.extend(df_original.iloc[:, col].astype(str).tolist())
-        
-        letras_detectadas = set()
-        for text in all_text_in_questions:
-            if pd.isna(text) or text.lower() == 'nan': continue
-            for char in text.upper():
-                if char in LETRAS_POSIBLES:
-                    letras_detectadas.add(char)
-        
-        if not letras_detectadas:
-            logger.warning("No se detectaron letras de opciones (A-E) en las columnas de preguntas.")
-        else:
-            max_letra_detectada = max(letras_detectadas)
-            idx_max_detectada = LETRAS_POSIBLES.index(max_letra_detectada) + 1 # 1 para A, 2 para B, etc.
-            
-            # CASO 1: Han configurado POCAS opciones para lo que hay en el Excel
-            if idx_max_detectada > n_opciones:
-                logger.error(f"Mismatch opciones: detectada {max_letra_detectada} pero configuradas {n_opciones}")
-                raise HTTPException(
-                    status_code=400, 
-                    detail=f"Has configurado el examen con {n_opciones} opciones, pero he detectado respuestas con la letra '{max_letra_detectada}'. Por favor, selecciona {idx_max_detectada} opciones en el menú desplegable."
-                )
-            
-            # CASO 2: Han configurado DEMASIADAS opciones para lo que hay en el Excel (Aviso o Error)
-            # Si el usuario dice 5 pero el máximo es C (3), la penalización será menor de lo debido.
-            if idx_max_detectada < n_opciones:
-                logger.error(f"Mismatch opciones: detectada max {max_letra_detectada} pero configuradas {n_opciones}")
-                raise HTTPException(
-                    status_code=400,
-                    detail=f"Parece que el examen es de {idx_max_detectada} opciones (la letra más alta es '{max_letra_detectada}'), pero has seleccionado {n_opciones}. Esto causaría errores en el cálculo de la penalización. Por favor, corrígelo."
-                )
 
         respuestas_correctas = {}
         for i in range(n_preguntas):
             col_idx = i + 1
             original_val = df_original.iloc[0, col_idx]
             respuestas_correctas[f"P{i+1}"] = parse_respuesta(original_val)
-            
-            clave_set = respuestas_correctas[f"P{i+1}"]
-            if clave_set and not clave_set.issubset(OPCIONES_ACTUALES):
-                opciones_invalidas = clave_set - OPCIONES_ACTUALES
-                logger.error(f"Opción inválida en clave P{i+1}: {opciones_invalidas}")
-                raise HTTPException(
-                    status_code=400, 
-                    detail=f"En la P{i+1} de la CLAVE (fila 2) has puesto '{','.join(opciones_invalidas)}', pero has configurado el examen para tener solo {n_opciones} opciones."
-                )
 
         df_alumnos = df_original.iloc[1:].copy()
-        
-        if df_alumnos.empty:
-            logger.error("No hay alumnos")
-            raise HTTPException(status_code=400, detail="No hay datos de alumnos. Asegúrate de listarlos a partir de la fila 3.")
-
-        # VALIDACIÓN: Columna DNI no puede estar totalmente vacía
-        if df_alumnos.iloc[:, 0].isna().all():
-            logger.error("Columna DNI totalmente vacía")
-            raise HTTPException(status_code=400, detail="La columna de DNI está vacía. No puedo identificar a los alumnos.")
-
-        # VALIDACIÓN: DNIs Duplicados
-        dnis = df_alumnos.iloc[:, 0].dropna()
-        if dnis.duplicated().any():
-            duplicados = dnis[dnis.duplicated()].unique().tolist()
-            logger.warning(f"DNIs duplicados detectados: {duplicados}")
-            # raise HTTPException(status_code=400, detail=f"Hay DNIs repetidos en el archivo: {', '.join(map(str, duplicados))}")
 
     except HTTPException as he:
         raise he
     except Exception as e:
-        logger.exception("Error crítico en validación")
-        raise HTTPException(status_code=500, detail=f"Error inesperado al validar el Excel: {str(e)}")
+        logger.exception("Error crítico en corrección")
+        raise HTTPException(status_code=500, detail=f"Error inesperado al procesar el Excel: {str(e)}")
 
     notas = []
     preview = []
@@ -495,49 +491,8 @@ async def validar_examen(
         except Exception:
             raise HTTPException(400, "No se pudo leer el archivo Excel")
 
-        if df.empty:
-            raise HTTPException(400, "El archivo Excel está vacío")
-
-        if len(df.columns) != n_preguntas + 1:
-            raise HTTPException(
-                400,
-                f"El Excel debe tener exactamente {n_preguntas + 1} columnas (DNI + {n_preguntas} preguntas). Se detectaron {len(df.columns)}."
-            )
-
-        if df.iloc[0].isna().all():
-            raise HTTPException(400, "La fila 2 (clave de respuestas) está vacía")
-
-        LETRAS_POSIBLES = ["A", "B", "C", "D", "E"]
-        OPCIONES_ACTUALES = set(LETRAS_POSIBLES[:n_opciones])
-
-        # Escanear letras usadas
-        letras_detectadas = set()
-        for col in range(1, n_preguntas + 1):
-            for val in df.iloc[:, col].astype(str):
-                for c in val.upper():
-                    if c in LETRAS_POSIBLES:
-                        letras_detectadas.add(c)
-
-        if letras_detectadas:
-            max_letra = max(letras_detectadas)
-            idx_max = LETRAS_POSIBLES.index(max_letra) + 1
-
-            if idx_max != n_opciones:
-                raise HTTPException(
-                    400,
-                    f"Has seleccionado {n_opciones} opciones, pero el Excel usa hasta '{max_letra}'. Corrige el selector."
-                )
-
-        # Validar clave
-        for i in range(n_preguntas):
-            clave = parse_respuesta(df.iloc[0, i + 1])
-            if not clave:
-                raise HTTPException(400, f"La pregunta P{i+1} no tiene ninguna respuesta correcta")
-            if not clave.issubset(OPCIONES_ACTUALES):
-                raise HTTPException(
-                    400,
-                    f"La clave de P{i+1} contiene opciones fuera del rango configurado"
-                )
+        # VALIDACIÓN CENTRALIZADA
+        validate_excel_logic(df, n_preguntas, n_opciones)
 
         return {
             "status": "ok",

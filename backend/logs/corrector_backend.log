@@ -86,3 +86,19 @@
 2025-12-26 11:34:09,977 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_5.xlsx con 5 opciones y 10 preguntas
 2025-12-26 11:34:35,174 - corrector - INFO - Validación previa del archivo: plantilla_correcta_5.xlsx con 5 opciones y 10 preguntas
 2025-12-26 11:34:36,017 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_5.xlsx con 5 opciones y 10 preguntas
+2026-01-07 13:44:11,917 - corrector - INFO - Validación previa del archivo: respuestas_completo_A01.xlsx con 5 opciones y 10 preguntas
+2026-01-07 13:44:13,373 - corrector - INFO - Iniciando corrección de archivo: respuestas_completo_A01.xlsx con 5 opciones y 10 preguntas
+2026-01-07 13:54:14,180 - corrector - INFO - Validación previa del archivo: respuestas_completo_A01.xlsx con 5 opciones y 10 preguntas
+2026-01-07 13:54:15,322 - corrector - INFO - Iniciando corrección de archivo: respuestas_completo_A01.xlsx con 5 opciones y 10 preguntas
+2026-01-07 14:07:22,272 - corrector - INFO - Validación previa del archivo: plantilla_error_dni_3.xlsx con 5 opciones y 10 preguntas
+2026-01-07 14:07:30,543 - corrector - INFO - Validación previa del archivo: plantilla_error_dni_3.xlsx con 3 opciones y 11 preguntas
+2026-01-07 14:07:43,107 - corrector - INFO - Validación previa del archivo: plantilla_error_dni_3.xlsx con 3 opciones y 9 preguntas
+2026-01-07 14:07:50,276 - corrector - INFO - Validación previa del archivo: plantilla_error_dni_3.xlsx con 3 opciones y 10 preguntas
+2026-01-07 14:08:24,785 - corrector - INFO - Validación previa del archivo: plantilla_error_dni_3.xlsx con 3 opciones y 10 preguntas
+2026-01-07 14:08:26,726 - corrector - INFO - Iniciando corrección de archivo: plantilla_error_dni_3.xlsx con 3 opciones y 10 preguntas
+2026-01-07 14:08:26,744 - corrector - ERROR - Columna DNI totalmente vacía
+2026-01-07 14:08:35,760 - corrector - INFO - Validación previa del archivo: plantilla_error_numero_preguntas_3.xlsx con 3 opciones y 10 preguntas
+2026-01-07 14:08:51,290 - corrector - INFO - Validación previa del archivo: plantilla_error_dni_3.xlsx con 3 opciones y 10 preguntas
+2026-01-07 14:08:52,274 - corrector - INFO - Iniciando corrección de archivo: plantilla_error_dni_3.xlsx con 3 opciones y 10 preguntas
+2026-01-07 14:08:52,284 - corrector - ERROR - Columna DNI totalmente vacía
+2026-01-07 14:09:50,470 - corrector - INFO - Validación previa del archivo: plantilla_error_dni_3.xlsx con 4 opciones y 10 preguntas
