@@ -470,8 +470,8 @@ function App() {
               <h1>¡Bienvenido a Grade Pilot!</h1>
               <p className="welcome-description">
                 La solución inteligente para la corrección de exámenes tipo test.
-                Sube tu archivo, valida la estructura y obtén resultados detallados
-                con métricas avanzadas en cuestión de segundos.
+                Sube tu archivo, valida la estructura y obtén resultados
+                con métricas en cuestión de segundos.
               </p>
 
               <div className="welcome-features">

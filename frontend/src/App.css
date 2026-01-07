@@ -15,16 +15,26 @@ body,
 .page {
     width: 100%;
     min-height: 100vh;
-    background:
-        radial-gradient(1200px 600px at 20% 10%,
-            rgba(255, 255, 255, 0.08),
-            transparent 60%),
-        linear-gradient(135deg, #2864d3, #384255);
+    background-image: url("/bg-abstract.png");
+    ;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 24px;
 }
+
+.page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("/bg-abstract.png");
+    background-size: cover;
+    background-position: center;
+    filter: blur(60px) saturate(110%);
+    opacity: 0.25;
+    z-index: -2;
+}
+
 
 
 /* Card glass */
@@ -37,7 +47,7 @@ body,
     padding: 28px 20px;
 
     border-radius: 18px;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(0, 8, 117, 0.3);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border: 1px solid rgba(255, 255, 255, 0.25);
@@ -291,7 +301,7 @@ body,
     inset: 0;
     z-index: 100;
     overflow: hidden;
-    background: rgba(69, 98, 151, 1);
+    background: #2F5EB6;
     backdrop-filter: blur(8px);
     padding: 0px;
 }
@@ -299,10 +309,10 @@ body,
 .preview-content {
     width: min(100vw, 640px);
     height: min(100vh, 550px);
-    background: rgba(69, 98, 151, 1);
+    background: #2F5EB6;
     backdrop-filter: blur(24px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 22px;
+    border-radius: 18px;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -316,7 +326,7 @@ body,
     font-size: 1.4rem;
     font-weight: 700;
 
-    border-bottom: 1px solid rgb(74, 102, 152);
+    border-bottom: 1px solid #2F5EB6;
 }
 
 .preview-table-wrapper {
@@ -333,7 +343,7 @@ body,
 .preview-content thead {
     position: sticky;
     top: 0;
-    background: rgb(74, 102, 152);
+    background: #2F5EB6;
     backdrop-filter: blur(6px);
 }
 
@@ -351,20 +361,20 @@ body,
 }
 
 .preview-content tbody tr:nth-child(even) {
-    background: rgb(74, 102, 152);
+    background: #2F5EB6;
 }
 
 .preview-content tbody tr:nth-child(odd) {
-    background: rgb(96, 116, 151);
+    background: #5c7bb4;
 }
 
 .preview-content tbody tr:hover {
-    background: rgb(59, 93, 151);
+    background: #79a2ee;
 }
 
 .preview-footer {
     padding: 16px 24px;
-    border-top: 1px solid rgb(74, 102, 152);
+    border-top: 1px solid #2F5EB6;
 }
 
 /* =======================
@@ -376,7 +386,7 @@ body,
     inset: 0;
     z-index: 9999;
     width: 100%;
-    background: rgba(69, 98, 151, 0.7);
+    background: #2F5EB6;
     backdrop-filter: blur(8px);
     padding: 0px;
     display: flex;
@@ -404,7 +414,7 @@ body,
 }
 
 .opt-btn {
-    background: rgba(255, 255, 255, 0.1);
+    background: #2F5EB6;
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
     padding: 8px 20px;
@@ -466,7 +476,7 @@ body,
 .metrics-content {
     width: min(100vw, 640px);
     height: min(100vh, 550px);
-    background: rgba(69, 98, 151, 1);
+    background: #2F5EB6;
     backdrop-filter: blur(24px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 22px;
@@ -483,7 +493,7 @@ body,
     font-size: 1.4rem;
     font-weight: 700;
 
-    border-bottom: 1px solid rgb(74, 102, 152);
+    border-bottom: 1px solid #2F5EB6;
 }
 
 .metrics-body {
@@ -615,7 +625,7 @@ body,
     inset: 0;
     z-index: 100;
     overflow: hidden;
-    background: rgba(69, 98, 151, 1);
+    background: #2F5EB6;
     backdrop-filter: blur(8px);
     padding: 0px;
 }
@@ -623,7 +633,7 @@ body,
 .tutorial-content {
     width: min(100vw, 640px);
     height: min(100vh, 550px);
-    background: rgba(69, 98, 151, 1);
+    background: #2F5EB6;
     backdrop-filter: blur(24px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 22px;
@@ -639,7 +649,7 @@ body,
     padding: 24px 28px;
     font-size: 1.4rem;
     font-weight: 600;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid #2F5EB6;
     background: linear-gradient(135deg, rgba(0, 198, 255, 0.15), rgba(0, 114, 255, 0.15));
     flex-shrink: 0;
     display: flex;
