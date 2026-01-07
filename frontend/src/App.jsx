@@ -494,6 +494,9 @@ function App() {
                   Ver Tutorial
                 </button>
               </div>
+              <p className="copyright-notice">
+                © 2025 Spectrumgrid S.L. — Grade Pilot
+              </p>
             </div>
           )}
 

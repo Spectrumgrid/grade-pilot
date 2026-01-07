@@ -1071,3 +1071,12 @@ body,
         border-radius: 14px;
     }
 }
+
+.copyright-notice {
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.658);
+    margin-top: 2rem;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+}
