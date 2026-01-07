@@ -654,6 +654,14 @@ body,
     flex-shrink: 0;
     display: flex;
     justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.tutorial-header h1,
+.tutorial-header h2 {
+    width: 100%;
+    text-align: center;
 }
 
 .tutorial-body {
@@ -1016,5 +1024,50 @@ body,
     .metrics-content,
     .tutorial-content {
         border-radius: 26px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* MODALES FULLSCREEN EN MÓVIL */
+    .tutorial-content,
+    .preview-content,
+    .metrics-content {
+        width: 88vw;
+        height: 75vh;
+        max-width: none;
+        max-height: none;
+        border-radius: 0;
+    }
+
+    /* HEADER CENTRADO REAL */
+    .tutorial-header,
+    .preview-header,
+    .metrics-header {
+        text-align: center;
+        padding: 20px 16px;
+        font-size: 1.25rem;
+    }
+
+    /* BODY SCROLL LIMPIO */
+    .tutorial-body,
+    .preview-table-wrapper,
+    .metrics-body {
+        padding: 20px 16px;
+    }
+
+    /* FOOTER PEGADO ABAJO */
+    .tutorial-footer,
+    .preview-footer,
+    .metrics-footer {
+        padding: 16px;
+    }
+
+    /* BOTONES TÁCTILES */
+    .tutorial-footer .primary-btn,
+    .tutorial-footer button {
+        min-height: 52px;
+        font-size: 1.05rem;
+        border-radius: 14px;
     }
 }
