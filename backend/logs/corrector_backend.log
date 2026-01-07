@@ -102,3 +102,27 @@
 2026-01-07 14:08:52,274 - corrector - INFO - Iniciando corrección de archivo: plantilla_error_dni_3.xlsx con 3 opciones y 10 preguntas
 2026-01-07 14:08:52,284 - corrector - ERROR - Columna DNI totalmente vacía
 2026-01-07 14:09:50,470 - corrector - INFO - Validación previa del archivo: plantilla_error_dni_3.xlsx con 4 opciones y 10 preguntas
+2026-01-07 14:12:34,348 - corrector - INFO - Validación previa del archivo: plantilla_error_dni_3.xlsx con 4 opciones y 10 preguntas
+2026-01-07 14:12:34,357 - corrector - ERROR - Mismatch opciones: detectada max C pero configuradas 4
+2026-01-07 14:12:34,359 - corrector - INFO - Validación previa del archivo: plantilla_error_dni_3.xlsx con 4 opciones y 10 preguntas
+2026-01-07 14:12:34,365 - corrector - ERROR - Mismatch opciones: detectada max C pero configuradas 4
+2026-01-07 14:12:40,286 - corrector - INFO - Validación previa del archivo: plantilla_error_dni_3.xlsx con 3 opciones y 10 preguntas
+2026-01-07 14:12:40,293 - corrector - ERROR - Columna DNI totalmente vacía
+2026-01-07 14:12:44,193 - corrector - INFO - Validación previa del archivo: plantilla_error_dni_3.xlsx con 3 opciones y 11 preguntas
+2026-01-07 14:12:44,199 - corrector - ERROR - Número de columnas incorrecto: 11
+2026-01-07 14:12:47,179 - corrector - INFO - Validación previa del archivo: plantilla_error_dni_3.xlsx con 3 opciones y 9 preguntas
+2026-01-07 14:12:47,186 - corrector - ERROR - Número de columnas incorrecto: 11
+2026-01-07 14:12:49,999 - corrector - INFO - Validación previa del archivo: plantilla_error_dni_3.xlsx con 3 opciones y 10 preguntas
+2026-01-07 14:12:50,007 - corrector - ERROR - Columna DNI totalmente vacía
+2026-01-07 14:12:56,814 - corrector - INFO - Validación previa del archivo: plantilla_correcta_5.xlsx con 3 opciones y 10 preguntas
+2026-01-07 14:12:56,822 - corrector - ERROR - Mismatch opciones: detectada E pero configuradas 3
+2026-01-07 14:13:00,846 - corrector - INFO - Validación previa del archivo: plantilla_correcta_5.xlsx con 5 opciones y 10 preguntas
+2026-01-07 14:13:02,333 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_5.xlsx con 5 opciones y 10 preguntas
+2026-01-07 14:13:12,322 - corrector - INFO - Validación previa del archivo: plantilla_correcta_4.xlsx con 5 opciones y 10 preguntas
+2026-01-07 14:13:12,329 - corrector - ERROR - Mismatch opciones: detectada max D pero configuradas 5
+2026-01-07 14:13:17,860 - corrector - INFO - Validación previa del archivo: plantilla_correcta_4.xlsx con 4 opciones y 10 preguntas
+2026-01-07 14:13:21,620 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_4.xlsx con 4 opciones y 10 preguntas
+2026-01-07 14:13:28,063 - corrector - INFO - Validación previa del archivo: plantilla_correcta_3.xlsx con 4 opciones y 10 preguntas
+2026-01-07 14:13:28,070 - corrector - ERROR - Mismatch opciones: detectada max C pero configuradas 4
+2026-01-07 14:13:29,383 - corrector - INFO - Validación previa del archivo: plantilla_correcta_3.xlsx con 3 opciones y 10 preguntas
+2026-01-07 14:13:30,452 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_3.xlsx con 3 opciones y 10 preguntas

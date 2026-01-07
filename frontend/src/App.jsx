@@ -227,7 +227,7 @@ function App() {
                     <h4>Estructura de columnas:</h4>
                     <ul>
                       <li><strong>Columna A:</strong> DNI de los alumnos</li>
-                      <li><strong>Columnas B-K:</strong> P1, P2, P3... PN (las N preguntas). Hasta un mínimo de 5 preguntas y un máximo de 20.</li>
+                      <li><strong>Columnas desde B:</strong> P1, P2, P3... PN (las N preguntas). Hasta un mínimo de 5 preguntas y un máximo de 20.</li>
                     </ul>
                   </div>
 
