@@ -258,13 +258,15 @@ function App() {
                   <div className="tutorial-section">
                     <h4>📝 Pasos para usar el corrector:</h4>
                     <ol>
-                      <li>Prepara tu archivo Excel con el formato indicado arriba</li>
-                      <li>Asegúrate de que la fila 2 contiene las respuestas correctas</li>
-                      <li>Haz clic en "Seleccionar archivo" o arrastra el Excel a la zona de carga</li>
-                      <li>Presiona el botón "Corregir examen"</li>
-                      <li>Puedes ver las métricas y el preview de notas</li>
-                      <li>Puedes descargar el Excel corregido, usa el botón "Descargar Excel"</li>
-                      <li>También puedes exportar el examen corregido a PDF, usa el botón "Exportar a PDF"</li>
+                      <li>Prepara tu archivo Excel con el formato indicado arriba.</li>
+                      <li>Asegúrate de que la fila 2 contiene las respuestas correctas.</li>
+                      <li>Haz clic en "Seleccionar archivo" o arrastra el Excel a la zona de carga.</li>
+                      <li>Presiona el botón "Validar archivo" para verificar que el archivo que estás intentando cargar cumple con el formato requerido.</li>
+                      <li>Si el archivo no cumple con el formato requerido, corrige el archivo y vuelve a intentar validarlo.</li>
+                      <li>Si el archivo cumple con el formato requerido, presiona el botón "Corregir examen".</li>
+                      <li>Puedes ver las métricas y el preview de notas.</li>
+                      <li>Puedes descargar el Excel corregido, usa el botón "Descargar Excel".</li>
+                      <li>También puedes exportar el examen corregido a un archivo PDF, usa el botón "Exportar a PDF".</li>
                     </ol>
                   </div>
 

@@ -15,7 +15,11 @@ body,
 .page {
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background:
+        radial-gradient(1200px 600px at 20% 10%,
+            rgba(255, 255, 255, 0.08),
+            transparent 60%),
+        linear-gradient(135deg, #2864d3, #384255);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -609,20 +613,17 @@ body,
 .tutorial-modal {
     position: fixed;
     inset: 0;
-    z-index: 9999;
-    width: 100%;
-    background: rgba(15, 23, 42, 0.75);
-    backdrop-filter: blur(10px);
+    z-index: 100;
+    overflow: hidden;
+    background: rgba(69, 98, 151, 1);
+    backdrop-filter: blur(8px);
     padding: 0px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .tutorial-content {
-    width: min(100vw, 900px);
-    height: min(100vh, 630px);
-    background: rgba(30, 41, 59, 0.98);
+    width: min(100vw, 640px);
+    height: min(100vh, 550px);
+    background: rgba(69, 98, 151, 1);
     backdrop-filter: blur(24px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 22px;
