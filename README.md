@@ -6,6 +6,8 @@ It provides a complete workflow to **validate, correct, analyse and export multi
 
 Grade‑Pilot is built as a **real academic tool**, not a demo: it follows robust validation rules, generates reproducible metrics, and is suitable for everyday use by lecturers with no technical background.
 
+DEMO-URL: https://grade-pilot-1.onrender.com/ 
+
 ---
 
 ## ✨ Core Capabilities
