@@ -73,7 +73,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "https://grade-pilot-1.onrender.com"
+        "https://grade-pilot-1.onrender.com",
+        "http://89.167.44.212:8080"
     ],
     allow_credentials=True,
     allow_methods=["*"],
