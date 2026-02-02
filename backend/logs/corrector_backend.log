@@ -126,3 +126,5 @@
 2026-01-07 14:13:28,070 - corrector - ERROR - Mismatch opciones: detectada max C pero configuradas 4
 2026-01-07 14:13:29,383 - corrector - INFO - Validación previa del archivo: plantilla_correcta_3.xlsx con 3 opciones y 10 preguntas
 2026-01-07 14:13:30,452 - corrector - INFO - Iniciando corrección de archivo: plantilla_correcta_3.xlsx con 3 opciones y 10 preguntas
+2026-01-27 16:04:58,298 - corrector - INFO - ValidaciÃ³n previa del archivo: respuestas_completo_A01.xlsx con 5 opciones y 10 preguntas
+2026-01-27 16:05:00,172 - corrector - INFO - Iniciando correcciÃ³n de archivo: respuestas_completo_A01.xlsx con 5 opciones y 10 preguntas

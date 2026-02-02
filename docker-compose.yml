@@ -1,0 +1,25 @@
+services:
+  backend:
+    build: ./backend
+    container_name: grade-pilot-backend
+    volumes:
+      - ./backend/logs:/app/logs
+      - ./backend/sessions:/app/sessions
+    environment:
+      - ENV=production
+      - FRONTEND_URL=http://localhost
+    ports:
+      - "8000:8000"
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        - VITE_API_URL=/api
+    container_name: grade-pilot-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    restart: always
