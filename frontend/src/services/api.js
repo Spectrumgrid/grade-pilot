@@ -1,49 +1,51 @@
-const API_URL = import.meta.env.VITE_API_URL;
+const base = (import.meta.env.BASE_URL || "/gradepilot").replace(/\/$/, "");
+export const apiBase = (import.meta.env.VITE_API_URL || `${base}/api`).replace(/\/$/, "");
 
-export async function validateExam(formData) {
-    const res = await fetch(`${API_URL}/validate`, {
-        method: "POST",
-        body: formData,
-    });
-
+async function ensureJson(res, fallbackMsg) {
     if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.detail || "Error en validación");
+        const text = await res.text();
+        throw new Error(text || fallbackMsg);
+    }
+
+    const ct = res.headers.get("content-type") || "";
+    if (!ct.includes("application/json")) {
+        const text = await res.text();
+        throw new Error(text || "La API no devolvio JSON");
     }
 
     return res.json();
+}
+
+export async function validateExam(formData) {
+    const res = await fetch(`${apiBase}/validate`, {
+        method: "POST",
+        body: formData,
+    });
+    return ensureJson(res, "Error en validacion");
 }
 
 export async function correctExam(formData) {
-    const res = await fetch(`${API_URL}/corregir`, {
+    const res = await fetch(`${apiBase}/corregir`, {
         method: "POST",
         body: formData,
     });
-
-    if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.detail || "Error en corrección");
-    }
-
-    return res.json();
+    return ensureJson(res, "Error en correccion");
 }
 
 export async function getPreview(sessionId) {
-    const res = await fetch(`${API_URL}/preview/${sessionId}`);
-    if (!res.ok) throw new Error("Error al obtener preview");
-    return res.json();
+    const res = await fetch(`${apiBase}/preview/${sessionId}`);
+    return ensureJson(res, "Error al obtener preview");
 }
 
 export async function getMetrics(sessionId) {
-    const res = await fetch(`${API_URL}/metrics/${sessionId}`);
-    if (!res.ok) throw new Error("Error al obtener métricas");
-    return res.json();
+    const res = await fetch(`${apiBase}/metrics/${sessionId}`);
+    return ensureJson(res, "Error al obtener metricas");
 }
 
 export function downloadExcel(sessionId) {
-    window.open(`${API_URL}/download/${sessionId}`, "_blank");
+    window.open(`${apiBase}/download/${sessionId}`, "_blank");
 }
 
 export function downloadPdf(sessionId) {
-    window.open(`${API_URL}/export-pdf/${sessionId}`, "_blank");
+    window.open(`${apiBase}/export-pdf/${sessionId}`, "_blank");
 }

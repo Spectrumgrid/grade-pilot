@@ -12,9 +12,9 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import toast, { Toaster } from "react-hot-toast";
-import { validateExam, correctExam, getPreview, getMetrics, downloadExcel, downloadPdf } from "./services/api";
+import { apiBase, validateExam, correctExam, getPreview, getMetrics } from "./services/api";
 
-const API_URL = import.meta.env.VITE_API_URL;
+const base = (import.meta.env.BASE_URL || "/gradepilot/").replace(/\/?$/, "/");
 
 function App() {
   const [file, setFile] = useState(null);
@@ -90,18 +90,8 @@ function App() {
     formData.append("n_preguntas", nPreguntas);
 
     try {
-      const res = await fetch(`${API_URL}/validate`, {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.detail || "Error en la validación");
-      }
-
-      toast.success("Archivo válido. Puedes corregir el examen.");
+      await validateExam(formData);
+      toast.success("Archivo valido. Puedes corregir el examen.");
       setValidated(true);
     } catch (err) {
       toast.error(err.message);
@@ -125,27 +115,15 @@ function App() {
     setSuccess(false);
 
     try {
-      const response = await fetch(`${API_URL}/corregir`, {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.detail || "Error en la corrección");
-      }
-
-      const data = await response.json();
+      const data = await correctExam(formData);
       const newSessionId = data.session_id;
       setSessionId(newSessionId);
 
-      toast.success("¡Examen corregido y descargado!");
+      toast.success("Examen corregido y descargado!");
 
       // Obtener datos para el historial
-      const previewRes = await fetch(`${API_URL}/preview/${newSessionId}`);
-      const previewJson = await previewRes.json();
-      const metricsRes = await fetch(`${API_URL}/metrics/${newSessionId}`);
-      const metricsJson = await metricsRes.json();
+      const previewJson = await getPreview(newSessionId);
+      const metricsJson = await getMetrics(newSessionId);
 
       // ACTUALIZAR ESTADO LOCAL PARA QUE SE VEA AL MOMENTO
       setPreviewData(previewJson);
@@ -175,7 +153,7 @@ function App() {
 
   const descargarExcel = async () => {
     try {
-      const response = await fetch(`${API_URL}/download/${session_id}`);
+      const response = await fetch(`${apiBase}/download/${session_id}`);
       if (!response.ok) throw new Error("Error al descargar Excel");
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
@@ -191,7 +169,7 @@ function App() {
 
   const descargarPDF = async () => {
     try {
-      const response = await fetch(`${API_URL}/export-pdf/${session_id}`);
+      const response = await fetch(`${apiBase}/export-pdf/${session_id}`);
       if (!response.ok) throw new Error("Error al exportar PDF");
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
@@ -251,7 +229,7 @@ function App() {
                   </div>
 
                   <div className="tutorial-image">
-                    <img src="/gradepilot/artifacts/excel_format_example.png" />
+                    <img src={`${base}artifacts/excel_format_example.png`} />
                     <p className="image-caption">Ejemplo del formato correcto del Excel</p>
                   </div>
 
@@ -522,8 +500,7 @@ function App() {
               <button
                 className="secondary-btn"
                 onClick={async () => {
-                  const res = await fetch(`${API_URL}/preview/${session_id}`);
-                  const data = await res.json();
+                  const data = await getPreview(session_id);
                   setPreviewData(data);
                   setShowPreview(true);
                 }}
@@ -533,8 +510,7 @@ function App() {
               <button
                 className="secondary-btn"
                 onClick={async () => {
-                  const res = await fetch(`${API_URL}/metrics/${session_id}`);
-                  const data = await res.json();
+                  const data = await getMetrics(session_id);
                   setMetrics(data);
                   setShowMetrics(true);
                 }}

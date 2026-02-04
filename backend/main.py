@@ -21,6 +21,7 @@ import time
 
 ENV = os.getenv("ENV", "dev")
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+ROOT_PATH = os.getenv("ROOT_PATH", "")
 
 
 SESSIONS_DIR = Path("sessions")
@@ -65,7 +66,7 @@ def cleanup_old_sessions():
     if removed > 0:
         logger.info(f"Limpieza de sesiones antiguas: {removed} sesiones eliminadas")
 
-app = FastAPI()
+app = FastAPI(root_path=ROOT_PATH)
 
 cleanup_old_sessions()
 
