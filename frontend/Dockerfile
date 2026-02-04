@@ -22,12 +22,14 @@ RUN npm run build
 # Etapa 2: Servidor
 FROM nginx:stable-alpine as production-stage
 
-# Copiar archivos construidos desde la etapa anterior
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+# Crear carpeta /gradepilot
+RUN mkdir -p /usr/share/nginx/html/gradepilot
 
-# Copiar configuración personalizada de nginx
+# Copiar build dentro de /gradepilot
+COPY --from=build-stage /app/dist /usr/share/nginx/html/gradepilot
+
+# Copiar configuración nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
-
 CMD ["nginx", "-g", "daemon off;"]
