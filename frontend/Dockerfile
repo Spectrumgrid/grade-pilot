@@ -25,9 +25,8 @@ FROM nginx:stable-alpine as production-stage
 # Copiar archivos construidos desde la etapa anterior bajo /gradepilot
 COPY --from=build-stage /app/dist /usr/share/nginx/html/gradepilot
 
-# Copiar configuración personalizada de nginx
+# Copiar configuración nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
-
 CMD ["nginx", "-g", "daemon off;"]
