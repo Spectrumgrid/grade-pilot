@@ -74,7 +74,8 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",
         "https://grade-pilot-1.onrender.com",
-        "http://89.167.44.212:8080"
+        "http://feqxtools.uvigo.es",
+        "https://feqxtools.uvigo.es",
     ],
     allow_credentials=True,
     allow_methods=["*"],
