@@ -251,7 +251,7 @@ function App() {
                   </div>
 
                   <div className="tutorial-image">
-                    <img src={`gradepilot/artifacts/excel_format_example.png`} alt="Ejemplo de formato Excel" />
+                    <img src="/gradepilot/artifacts/excel_format_example.png" alt="Ejemplo de formato Excel" />
                     <p className="image-caption">Ejemplo del formato correcto del Excel</p>
                   </div>
 
